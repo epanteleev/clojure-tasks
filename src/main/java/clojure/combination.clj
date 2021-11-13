@@ -1,20 +1,20 @@
 (ns combination
   (:require [clojure.string :as clojure-str]))
 
-(defn add-letter
+(defn ^:private add-letter
   ([symbol, words] (add-letter (first words) (rest words) symbol []))
   ([x, tail, symbol, acc]
    (if-not (nil? x)
      (if-not (clojure-str/starts-with? x symbol)
-       (tail (first tail) (rest tail) symbol (conj acc (str symbol x)))
-       (tail (first tail) (rest tail) symbol acc)
+       (recur (first tail) (rest tail) symbol (conj acc (str symbol x)))
+       (recur (first tail) (rest tail) symbol acc)
        )
      acc
      )
    )
   )
 
-(defn iter
+(defn ^:private iter
   ([symbols, words] (iter (first symbols) (rest symbols) words []))
   ([x, tail, words, acc]
    (if-not (nil? x)

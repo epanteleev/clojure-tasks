@@ -21,21 +21,3 @@
     (is (equal-to 0.333 ((integral-partial-sums y=sqrx) 1)))
     (is (equal-to 576 ((integral-partial-sums y=sqrx) 12))))
   )
-
-(deftest time-test
-  (testing "Naive execution time measure: "
-    (println "y=sqrx with integral:")
-    (time ((memoized-integral y=sqrx) 1))
-    (time ((memoized-integral y=sqrx) 1))
-    (time ((memoized-integral y=sqrx) 2))
-    (time ((memoized-integral y=sqrx) 2))
-    (time ((memoized-integral y=sqrx) 30))
-    (time ((memoized-integral y=sqrx) 30))
-    (println)
-    (println "y=sqrx with partial sum integral:")
-    (time ((integral-partial-sums y=sqrx) 1))
-    (time ((integral-partial-sums y=sqrx) 1))
-    (time ((integral-partial-sums y=sqrx) 2))
-    (time ((integral-partial-sums y=sqrx) 2))
-    (time ((integral-partial-sums y=sqrx) 30))
-    (time ((integral-partial-sums y=sqrx) 30))))

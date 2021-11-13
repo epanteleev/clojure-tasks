@@ -4,10 +4,9 @@
 
 (defn add-letter [letter words]
   (map (fn [word] (str letter word))
-       (my-filter (fn [word] (not (clojure-str/starts-with? word letter))) words)
+       (filter (fn [word] (not (clojure-str/starts-with? word letter))) words)
        )
   )
-
 
 (defn iter [letters words]
   (reduce concat

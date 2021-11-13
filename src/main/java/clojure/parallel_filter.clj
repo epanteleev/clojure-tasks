@@ -24,8 +24,9 @@
 
 (defn parallel-filter
   [pred coll] (->> (split-to tack-pool coll)
-                   (pmap (fn [x] (doall (filter pred x))))
-                   (flatten))
+                   (map (fn [x] (doall (filter pred x))))
+                   (flatten)
+                   )
   )
 
 (defn ^:private lazy-split [batch-size coll]
